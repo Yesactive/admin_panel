@@ -1,0 +1,133 @@
+<div class="demo-components-container">
+
+    <nz-spin [nzSpinning]="isSpinning">
+
+        <nz-page-header [nzGhost]="false" (nzBack)="onBack()" class="site-page-header" nzTitle="Activity Provider" nzSubtitle="">
+            <nz-page-header-title>Activity Provider</nz-page-header-title>
+        </nz-page-header>
+        <nz-card>
+
+            <nz-tabset>
+                <nz-tab nzTitle="Main Info">
+                    <form nz-form [formGroup]="companyForm">
+                        <!-- [nzLayout]="'vertical'" -->
+
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="title" nzRequired>Title</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Title!">
+                                <input nz-input id="title" formControlName="title" [readonly]="!isEdit" />
+                            </nz-form-control>
+                            <!-- [attr.disabled]="!isEdit"  -->
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="reg_no">Registration No.</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Reg. No.!">
+                                <input nz-input id="reg_no" formControlName="reg_no" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="description">Info</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Info!">
+                                <textarea id="description" formControlName="description" rows="4" nz-input [readonly]="!isEdit"></textarea>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address" nzRequired>Address 1</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your address!">
+                                <input nz-input id="address" formControlName="address" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address_2">Address 2</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your address 2!">
+                                <input nz-input id="address_2" formControlName="address_2" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="city" nzRequired>City</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your city!">
+                                <input nz-input id="city" formControlName="city" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="county">County</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your county!">
+                                <input nz-input id="county" formControlName="county" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="postcode">Postcode</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your postcode!">
+                                <input nz-input id="postcode" formControlName="postcode" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="fax">Fax</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Fax!">
+                                <input nz-input id="fax" formControlName="fax" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phone">Phone</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your phone!">
+                                <input nz-input id="phone" formControlName="phone" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                                <input nz-input formControlName="email" id="email" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="webaddress">Web Address</nz-form-label>
+                            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Web Address!">
+                                <input nz-input id="webaddress" formControlName="webaddress" placeholder="Web Address" [readonly]="!isEdit" />
+                            </nz-form-control>
+                        </nz-form-item>
+
+                        <nz-form-item>
+                            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">Status</nz-form-label>
+                            <nz-form-control nzErrorTip="Please input this field!">
+
+                                <nz-select class="w-100" formControlName="status" nzAllowClear [nzDisabled]="!isEdit">
+                                    <nz-option *ngFor="let option of statusOptionList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+                                </nz-select><!-- [(ngModel)]="defaultSelValue"  -->
+
+                            </nz-form-control>
+                        </nz-form-item>
+
+                        <nz-form-item nz-row class="register-area">
+                            <nz-form-control [nzSpan]="14" [nzOffset]="6">
+
+                                <button nz-button nzType="primary" *ngIf="!isEdit" (click)="edit()">Edit</button>
+
+                                <button nz-button nzType="default" *ngIf="isEdit" (click)="submitForm()" [nzLoading]="isLoadingOne">Save</button>
+
+                                <button nz-button nzType="default" (click)="cancel()">Cancel</button>
+                            </nz-form-control>
+                        </nz-form-item>
+
+                    </form>
+                </nz-tab>
+                <nz-tab nzTitle="Activities">
+                     <ng-template nz-tab> 
+                        <nz-basic-info-tab-content></nz-basic-info-tab-content>
+                     </ng-template> 
+                </nz-tab>
+                <nz-tab nzTitle="Events">
+                    <ng-template nz-tab>
+                        <nz-demo-tab-content-lazy></nz-demo-tab-content-lazy>
+                    </ng-template>
+                </nz-tab>
+                <nz-tab nzTitle="Trainers/Supervisors">
+                    <ng-template nz-tab>
+                        <nz-demo-tab-content-lazy></nz-demo-tab-content-lazy>
+                    </ng-template>
+                </nz-tab>
+            </nz-tabset>
+
+
+        </nz-card>
+    </nz-spin>
+</div>

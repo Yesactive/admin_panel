@@ -1,0 +1,62 @@
+<div class="demo-components-container">
+
+    <nz-page-header [nzGhost]="false">
+        <nz-page-header-title>Activity Providers</nz-page-header-title>
+        <nz-page-header-extra>
+            <button nz-button nzType="primary" (click)="addNewCompany()">Add</button>
+        </nz-page-header-extra>
+    </nz-page-header>
+
+    <nz-card>
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+                <div class="d-md-flex">
+                    <div class="m-b-10 m-r-20">
+                        <nz-input-group [nzPrefix]="prefixTemplate">
+                            <input type="text" nz-input placeholder="Search" [(ngModel)]="searchInput" (ngModelChange)="search()">
+                        </nz-input-group>
+                        <ng-template #prefixTemplate>
+                            <i nz-icon nzType="search" class="opacity-05"></i>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-right">
+            </div>
+        </div>
+        <nz-table #companyListTable [nzData]="displayData">
+            <thead>
+                <tr>
+                    <th *ngFor="let column of orderColumn" [nzSortFn]="column.compare">{{ column.title }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let company of companyListTable.data;  let i=index">
+                    <td>{{'#CMP000'+company.id}}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <!-- <nz-avatar nzShape="square" [nzSize]="60" nzIcon="picture" [nzSrc]="member.avatar"></nz-avatar> -->
+                            <span class="m-l-10">{{company.title}}</span>
+                        </div>
+                    </td>
+                    <td>{{company.city}}</td>
+                    <td>{{company.email}}</td>
+                    <td>{{company.postcode}}</td>
+                    <td>
+                        <nz-badge *ngIf="company.status == '1'" nzStatus="success"></nz-badge>
+                        <nz-badge *ngIf="company.status == '0'" nzStatus="error"></nz-badge>
+                        <span class="text-capitalize">{{company.astatus}}</span>
+                    </td>
+                    <td class="text-md-right">
+                        <a class="m-r-5" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit" [routerLink]="['/activity_provider', company.id]">
+                        <i nz-icon nzType="edit" theme="outline"></i>
+                    </a>
+                        <button nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Delete" (click)="deleteCompany(company.id)">
+                        <i nz-icon nzType="delete" theme="outline"></i>
+                    </button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-card>
+</div>

@@ -1,0 +1,108 @@
+<div class="demo-components-container">
+
+    <nz-page-header [nzGhost]="false">
+        <!-- nzBackIcon -->
+        <nz-page-header-title>Members</nz-page-header-title>
+        <!-- <nz-page-header-subtitle>This is a subtitle</nz-page-header-subtitle> -->
+        <nz-page-header-extra>
+            <button nz-button nzType="primary" (click)="addNewMember()">Add</button>
+        </nz-page-header-extra>
+    </nz-page-header>
+    <!-- <nz-card>
+        <nz-table #nzTable [nzData]="listOfDisplayData" nzShowPagination nzShowSizeChanger nzShowTotal nzTableLayout="fixed">
+            <thead>
+                <tr>
+                    <th nzCustomFilter>
+                        Name
+                        <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                            <i nz-icon nzType="search"></i>
+                        </nz-filter-trigger>
+                    </th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of nzTable.data">
+                    <td>{{ data.name }}</td>
+                    <td>{{ data.city }}</td>
+                    <td>{{ data.address }}</td>
+                    <td>{{ data.status }}</td>
+                    <td>
+                        <a  [routerLink]="['/member', data.id]">Edit</a>
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <a>Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <div class="ant-table-filter-dropdown">
+                <div class="search-box">
+                    <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+                    <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+                    <button nz-button nzSize="small" (click)="reset()">Reset</button>
+                </div>
+            </div>
+        </nz-dropdown-menu>
+    </nz-card> -->
+
+    <nz-card>
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+                <div class="d-md-flex">
+                    <div class="m-b-10 m-r-20">
+                        <nz-input-group [nzPrefix]="prefixTemplate">
+                            <input type="text" nz-input placeholder="Search" [(ngModel)]="searchInput" (ngModelChange)="search()">
+                        </nz-input-group>
+                        <ng-template #prefixTemplate>
+                            <i nz-icon nzType="search" class="opacity-05"></i>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-right">
+                <!-- <a nz-button nzType="primary">
+                <i nz-icon nzType="plus-circle" theme="outline"></i>
+                <span>Add Member</span>
+            </a> -->
+            </div>
+        </div>
+        <nz-table #memberListTable [nzData]="displayData">
+            <thead>
+                <tr>
+                    <th *ngFor="let column of orderColumn" [nzSortFn]="column.compare">{{ column.title }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let member of memberListTable.data;  let i=index">
+                    <td>{{'#MEM000'+member.id}}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <!-- <nz-avatar nzShape="square" [nzSize]="60" nzIcon="picture" [nzSrc]="member.avatar"></nz-avatar> -->
+                            <span class="m-l-10">{{member.name}}</span>
+                        </div>
+                    </td>
+                    <td>{{member.city}}</td>
+                    <td>{{member.email}}</td>
+                    <td>{{member.postcode}}</td>
+                    <td>
+                        <nz-badge *ngIf="member.status == '1'" nzStatus="success"></nz-badge>
+                        <nz-badge *ngIf="member.status == '0'" nzStatus="error"></nz-badge>
+                        <span class="text-capitalize">{{member.astatus}}</span>
+                    </td>
+                    <td class="text-md-right">
+                        <a class="m-r-5" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit" [routerLink]="['/member', member.id]">
+                        <i nz-icon nzType="edit" theme="outline"></i>
+                    </a>
+                        <button nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Delete" (click)="deleteMember(member.id)">
+                        <i nz-icon nzType="delete" theme="outline"></i>
+                    </button>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-card>
+</div>

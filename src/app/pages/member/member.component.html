@@ -1,0 +1,124 @@
+<div class="demo-components-container">
+
+    <nz-page-header [nzGhost]="false" (nzBack)="onBack()" class="site-page-header" nzTitle="Member" nzSubtitle="">
+        <!-- nzBackIcon -->
+        <nz-page-header-title>Member</nz-page-header-title>
+    </nz-page-header>
+    <nz-card>
+        <!-- <h5>Info</h5>
+        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at
+            its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed
+            to using 'Content here, content here'.</p>
+        <hr>
+        <h5>Specialilty</h5>
+        <div class="m-t-20">
+             <nz-tag *ngFor="let item of skillListData">{{item}}</nz-tag> 
+        </div>
+        <hr>
+        <h5>Experices</h5>
+        <div class="m-t-20">
+        </div>
+        <hr>
+        <h5>Education</h5> -->
+
+        <form nz-form [formGroup]="memberForm">
+            <!--  (ngSubmit)="submitForm()" -->
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="name" nzRequired>Name</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
+                    <input nz-input id="name" formControlName="name" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="short_info">Info</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Info!">
+                    <!-- <input nz-input id="short_info" formControlName="short_info" [disabled]="true" /> -->
+                    <textarea id="short_info" formControlName="short_info" rows="4" nz-input [disabled]="!isEdit"></textarea>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address" nzRequired>Address 1</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your address!">
+                    <input nz-input id="address" formControlName="address" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address_2">Address 2</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your address 2!">
+                    <input nz-input id="address_2" formControlName="address_2" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="city" nzRequired>City</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your city!">
+                    <input nz-input id="city" formControlName="city" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="county">County</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your county!">
+                    <input nz-input id="county" formControlName="county" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="postcode">Postcode</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your postcode!">
+                    <input nz-input id="postcode" formControlName="postcode" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="fax">Fax</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your Fax!">
+                    <input nz-input id="fax" formControlName="fax" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phone">Phone</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your phone!">
+                    <input nz-input id="phone" formControlName="phone" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+                    <input nz-input formControlName="email" id="email" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="webaddress">Web Address</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Web Address!">
+                    <input nz-input id="webaddress" formControlName="webaddress" placeholder="Web Address" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">Status</nz-form-label>
+                <nz-form-control nzErrorTip="Please input this field!">
+
+                    <nz-select class="w-100" formControlName="status" nzAllowClear  [nzDisabled]="!isEdit"><!--  nzPlaceHolder="Choose" -->
+                        <nz-option *ngFor="let option of statusOptionList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+                    </nz-select><!-- [(ngModel)]="defaultSelValue"  -->
+
+                </nz-form-control>
+            </nz-form-item>
+            <!-- <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="6">
+                    <button nz-button nzType="primary">Save</button>
+                </nz-form-control>
+            </nz-form-item> -->
+
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="6">
+
+                    <button nz-button nzType="primary" *ngIf="!isEdit" (click)="edit()">Edit</button>
+
+                    <button nz-button nzType="default" *ngIf="isEdit" (click)="submitForm()" [nzLoading]="isLoadingOne">Save</button>
+
+                    <button nz-button nzType="default" (click)="cancel()">Cancel</button>
+                </nz-form-control>
+            </nz-form-item>
+
+        </form>
+    </nz-card>
+</div>

@@ -1,0 +1,58 @@
+<div class="demo-components-container">
+
+    <nz-page-header [nzGhost]="false">
+        <nz-page-header-title>Activity</nz-page-header-title>
+        <nz-page-header-extra>
+            <button nz-button nzType="primary" (click)="addNewActivity()">Add</button>
+        </nz-page-header-extra>
+    </nz-page-header>
+
+    <nz-card>
+
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+                <div class="d-md-flex">
+                    <div class="m-b-10 m-r-20">
+                        <nz-input-group [nzPrefix]="prefixTemplate">
+                            <input type="text" nz-input placeholder="Search" [(ngModel)]="searchInput" (ngModelChange)="search()">
+                        </nz-input-group>
+                        <ng-template #prefixTemplate>
+                            <i nz-icon nzType="search" class="opacity-05"></i>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-right">
+            </div>
+        </div>
+        <nz-table #activityListTable [nzData]="displayData">
+            <thead>
+                <tr>
+                    <th *ngFor="let column of orderColumn" [nzSortFn]="column.compare">{{ column.title }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let activity of activityListTable.data;  let i=index">
+                    <td>{{'#ACT000'+activity.id}}</td>
+                    <!-- {{activity.id}}  -->
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <span class="m-l-10">{{activity.title}}</span>
+                        </div>
+                    </td>
+                    <td>{{activity.category}}</td>
+                    <td>
+                        <nz-badge *ngIf="activity.status == '1'" nzStatus="success"></nz-badge>
+                        <nz-badge *ngIf="activity.status == '0'" nzStatus="error"></nz-badge>
+                        <span class="text-capitalize">{{activity.astatus}}</span>
+                    </td>
+                    <td class="text-md-left">
+                        <a class="m-r-5" nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="Edit" [routerLink]="['/registered-activity', activity.id]">
+                        <i nz-icon nzType="edit" theme="outline"></i>
+                    </a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </nz-card>
+</div>

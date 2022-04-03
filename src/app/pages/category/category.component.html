@@ -1,0 +1,41 @@
+<div class="demo-components-container">
+
+    <nz-page-header [nzGhost]="false" (nzBack)="onBack()" class="site-page-header" nzTitle="Category" nzSubtitle="">
+        <nz-page-header-title>Category</nz-page-header-title>
+    </nz-page-header>
+    <nz-card>
+
+        <form nz-form [formGroup]="categoryForm">
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="title" nzRequired>Title</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input Title!">
+                    <input nz-input id="title" formControlName="title" [readonly]="!isEdit" />
+                </nz-form-control>
+            </nz-form-item>
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="status">Status</nz-form-label>
+                <nz-form-control nzErrorTip="Please input this field!">
+
+                    <nz-select class="w-100" formControlName="status" nzAllowClear [nzDisabled]="!isEdit">
+                        <nz-option *ngFor="let option of statusOptionList" [nzValue]="option" [nzLabel]="option.label"></nz-option>
+                    </nz-select>
+
+                </nz-form-control><!-- [(ngModel)]="defaultSelValue"  -->
+            </nz-form-item>
+
+            <nz-form-item nz-row class="register-area">
+                <nz-form-control [nzSpan]="14" [nzOffset]="6">
+
+                    <button nz-button nzType="primary" *ngIf="!isEdit" (click)="edit()">Edit</button>
+
+                    <button nz-button nzType="default" *ngIf="isEdit" (click)="submitForm()" [nzLoading]="isLoadingOne">Save</button>
+
+                    <button nz-button nzType="default" (click)="cancel()">Cancel</button>
+                </nz-form-control>
+            </nz-form-item>
+
+        </form>
+    </nz-card>
+</div>
